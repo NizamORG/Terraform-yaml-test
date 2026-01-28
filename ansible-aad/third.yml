@@ -1,0 +1,26 @@
+---
+# Owners : Donnie Gober
+gh_groups:
+  gh-ehr-iam-owners:
+    privacy: closed
+    description: A github managed team for ehr approvers
+    members:
+      - username: donnie-gober_CPSI
+        role: maintainer
+aad_groups:
+  az-grp-crp-proddev-ehr-coe-all:
+    nested_groups:
+      - az-grp-crp-proddev-ehr-coe-github
+    users:
+      - jamie.wanken@trubridge.com
+      - jason.holmgren@trubridge.com
+      - jasonp@trubridge.com
+      - marshall.weekley@trubridge.com
+      - rob.resendez@trubridge.com
+  az-grp-crp-proddev-ehr-coe-github:
+    users:
+      - jamie.wanken@trubridge.com
+      - jason.holmgren@trubridge.com
+      - jasonp@trubridge.com
+      - marshall.weekley@trubridge.com
+      - rob.resendez@trubridge.com
