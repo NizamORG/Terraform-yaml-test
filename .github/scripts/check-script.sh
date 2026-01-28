@@ -27,7 +27,7 @@ for FILE in $CHANGED_FILES; do
 done
 
 # Clean up temp files (optional but good practice)
-rm -f base.yaml base_gh.yaml head_gh.yaml base_norm.yaml head_norm.yaml
+# rm -f base.yaml base_gh.yaml head_gh.yaml base_norm.yaml head_norm.yaml
 
 # Set GitHub output
 echo "gh_groups_changed=$CHANGED" >> "$GITHUB_OUTPUT"

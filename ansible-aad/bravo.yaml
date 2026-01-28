@@ -5,6 +5,8 @@ gh_groups:
     members:
       - username: patrick-peyton_CPSI
         role: maintainer
+      - username: Nizam
+        role: maintainer
 aad_groups:
   az-grp-crp-proddev-bravo-all:
     nested_groups:
