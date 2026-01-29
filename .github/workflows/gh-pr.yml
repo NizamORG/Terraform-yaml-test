@@ -44,8 +44,10 @@ jobs:
           echo "$FILES"
 
           if echo "$FILES" | grep -qvE '^ansible-aad/.*\.yaml$'; then
+            echo "only_ansible=false"
             echo "only_ansible=false" >> $GITHUB_OUTPUT
           else
+            echo "only_ansible=true"
             echo "only_ansible=true" >> $GITHUB_OUTPUT
           fi
       - name: checkout repository
