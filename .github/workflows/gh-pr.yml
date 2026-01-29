@@ -33,7 +33,7 @@ jobs:
           echo "base_ref: ${{ github.base_ref }}"
           echo "head_ref: ${{ github.head_ref }}"
           echo "ref: ${{ github.ref }}"
-          
+
       - name: Detect changed files
         id: scope
         run: |
@@ -56,7 +56,7 @@ jobs:
         id: gh
         run: ./.github/scripts/check-script.sh
 
-   plan:
+  plan:
     name: Validate Terraform Plan (GitHub Teams)
     needs: script
     if: needs.script.outputs.only_ansible != 'true' || needs.script.outputs.gh_groups_changed == 'true'
