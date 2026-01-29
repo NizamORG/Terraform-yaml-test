@@ -20,7 +20,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  Script:
+  script:
     name: Detect change scope
     runs-on: ubuntu-latest
     outputs:
@@ -53,8 +53,8 @@ jobs:
 
    plan:
     name: Validate Terraform Plan (GitHub Teams)
-    needs: Script
-    if: needs.Script.outputs.only_ansible!='true' || needs.script.outputs.gh_groups_changed==true
+    needs: script
+    if: needs.script.outputs.only_ansible != 'true' || needs.script.outputs.gh_groups_changed == 'true'
     runs-on: ubuntu-latest
     environment: terraform-deployment-1_0-reader
     permissions:
