@@ -13,6 +13,7 @@ aad_groups:
       - az-grp-crp-proddev-ehr-coe-github
     users:
       - jamie.wanken@trubridge.com
+      - mohammednizam@trubridge.com
       - jason.holmgren@trubridge.com
       - jasonp@trubridge.com
       - marshall.weekley@trubridge.com
