@@ -51,7 +51,7 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v4
       - name: Add permissions
-        run : chmod +x /.github/scripts/check-script.sh
+        run : chmod +x .github/scripts/check-script.sh
       - name: Run scipt
         id: gh
         if: steps.scope.outputs.only_ansible == 'true'
