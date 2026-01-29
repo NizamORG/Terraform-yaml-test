@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# git fetch origin "${{ github.base_ref }}:${{ github.base_ref }}"
-git fetch origin main:main
+git fetch origin "${{ github.base_ref }}:${{ github.base_ref }}"
+# git fetch origin main:main
 
 CHANGED=false
 # Get list of changed YAML files in the specific path
@@ -9,8 +9,8 @@ CHANGED_FILES=$(git diff --name-only "${{ github.base_ref }}".."${{ github.head_
 # CHANGED_FILES=$(git diff --name-only main..cop -- 'ansible-aad/*.yaml')
 
 for FILE in $CHANGED_FILES; do
-  # git show "${{ github.base_ref }}:$FILE" > base.yaml 2>/dev/null || echo "{}" > base.yaml
-   git show "main:$FILE" > base.yaml 2>/dev/null || echo "{}" > base.yaml
+  git show "${{ github.base_ref }}:$FILE" > base.yaml 2>/dev/null || echo "{}" > base.yaml
+  #  git show "main:$FILE" > base.yaml 2>/dev/null || echo "{}" > base.yaml
    yq e '.gh_groups' base.yaml > base_gh.yaml
    
 
