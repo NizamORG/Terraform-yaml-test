@@ -38,7 +38,7 @@ jobs:
         id: scope
         run: |
           git fetch origin "${{ github.base_ref }}"
-          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          FILES=$(git diff --name-only origin/${{ github.base_ref }}..HEAD)
 
           echo "Changed files:"
           echo "$FILES"
