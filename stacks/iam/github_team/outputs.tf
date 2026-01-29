@@ -4,7 +4,7 @@ output "github_team_id" {
 }
 
 output "github_team_node_id" {
-  description = "A key value pair of the Node ID of the created team."
+  description = "A key value pair of the Node ID of the created team. New team"
   value       = module.github_team.github_team_node_id
 }
 

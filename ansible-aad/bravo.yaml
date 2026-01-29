@@ -20,6 +20,7 @@ aad_groups:
       - az-grp-crp-prodmadhusss
       - az-grp-crp-proddev-bravo-pd
       - az-grp-crp-prod2-bravo
+      - az-grp-crp-prod2-bravo
     users:
       - mahesh.ramasamy@trubridge.com
       - patrick.peyton@trubridge.com
