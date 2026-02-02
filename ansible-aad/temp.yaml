@@ -7,8 +7,6 @@ gh_groups:
     members:
       - username: brent-runkle_CPSI
         role: maintainer
-      - username: Nizam2
-        role: maintainer
 aad_groups:
   az-grp-crp-proddev-bytebenders-all:
     nested_groups:
