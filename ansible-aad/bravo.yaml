@@ -7,8 +7,6 @@ gh_groups:
         role: maintainer
       - username: Nizam
         role: maintainer
-      - username: madhu
-        role: maintainer
 aad_groups:
   az-grp-crp-proddev-bravo-all:
     nested_groups:
