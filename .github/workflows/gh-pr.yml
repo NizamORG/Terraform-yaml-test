@@ -24,38 +24,16 @@ jobs:
     name: Detect change scope
     runs-on: ubuntu-latest
     outputs:
-      only_ansible: ${{ steps.scope.outputs.only_ansible }}
-      gh_groups_changed: ${{ steps.gh.outputs.gh_groups_changed }}
+      only_ansible: ${{ steps.vari.outputs.only_ansible }}
+      gh_groups_changed: ${{ steps.vari.outputs.gh_groups_changed }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Print
-        run: |
-          echo "base_ref: ${{ github.base_ref }}"
-          echo "head_ref: ${{ github.head_ref }}"
-          echo "ref: ${{ github.ref }}"
-
-      - name: Detect changed files
-        id: scope
-        run: |
-          git fetch origin "${{ github.base_ref }}"
-          FILES=$(git diff --name-only origin/${{ github.base_ref }}..HEAD)
-
-          echo "Changed files:"
-          echo "$FILES"
-
-          if echo "$FILES" | grep -qvE '^ansible-aad/.*\.yaml$'; then
-            echo "only_ansible=false" >> $GITHUB_OUTPUT
-          else
-            echo "only_ansible=true" >> $GITHUB_OUTPUT
-          fi
       - name: checkout repository
         uses: actions/checkout@v4
       - name: Add permissions
         run : chmod +x .github/scripts/check-script.sh
       - name: Run scipt
-        id: gh
-        if: steps.scope.outputs.only_ansible == 'true'
-        run: ./.github/scripts/check-script.sh
+        id: vari
+        run: ./.github/scripts/gh_pr_script.sh
 
   plan:
     name: Validate Terraform Plan (GitHub Teams)
