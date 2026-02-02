@@ -10,7 +10,7 @@ echo "$FILES"
 
 if echo "$FILES" | grep -qvE '^ansible-aad/.*\.yaml$'; then
   echo "only_ansible=false" >> "$GITHUB_OUTPUT"
-  echo "Non-ansible files detected. Skipping gh_groups diff."
+  echo "Non-ansible files detected. Skipping gh_groups diff"
   echo "gh_groups_changed=false" >> "$GITHUB_OUTPUT"
   exit 0
 else
@@ -21,7 +21,7 @@ GH_GROUPS_CHANGED=false
 
 YAML_FILES=$(echo "$FILES" | grep '^ansible-aad/.*\.yaml$' || true)
 
-echo "$YAMLFILES"
+echo "$YAML_FILES"
 
 for FILE in $YAML_FILES; do
   echo "Checking gh_groups diff for $FILE"
