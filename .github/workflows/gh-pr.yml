@@ -9,7 +9,7 @@ on:
       - synchronize
     paths:
       - "deployments/cpsi/global/iam/core_github_team/**"
-      - ".github/workflows/gh-team-pr.yml"
+      - ".github/workflows/gh-pr.yml"
       - "modules/terraform-github-team/terraform-github-team"
       - "stacks/iam/github_team/**"
       - "ansible-aad/*.yaml"
