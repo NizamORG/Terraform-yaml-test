@@ -67,38 +67,40 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_wrapper: false
+      - name: Echo
+        run: echo "Terraform Job triggerred"
 
-      - name: Terraform Init
+      # - name: Terraform Init
        
-        run: |
-          terraform init
-        env:
-          GITHUB_APP_ID: ${{ vars.APP_ID }}
-          GITHUB_APP_INSTALLATION_ID: ${{ vars.APP_INSTALLATION_ID }}
-          GITHUB_APP_PEM_FILE: |-
-            ${{ secrets.TEAM_MGMT_GITHUB_APP_PEM_FILE }}
+      #   run: |
+      #     terraform init
+      #   env:
+      #     GITHUB_APP_ID: ${{ vars.APP_ID }}
+      #     GITHUB_APP_INSTALLATION_ID: ${{ vars.APP_INSTALLATION_ID }}
+      #     GITHUB_APP_PEM_FILE: |-
+      #       ${{ secrets.TEAM_MGMT_GITHUB_APP_PEM_FILE }}
 
-      - name: Terraform Plan
-        id: plan
-        run: |
-          terraform fmt -check -recursive
-          exitcode=0
-          terraform plan \
-            -lock=false \
-            -detailed-exitcode \
-            -out=.planfile || exitcode=$?
-          echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
-        env:
-          GITHUB_APP_ID: ${{ vars.APP_ID }}
-          GITHUB_APP_INSTALLATION_ID: ${{ vars.APP_INSTALLATION_ID }}
-          GITHUB_APP_PEM_FILE: |-
-            ${{ secrets.TEAM_MGMT_GITHUB_APP_PEM_FILE }}
+      # - name: Terraform Plan
+      #   id: plan
+      #   run: |
+      #     terraform fmt -check -recursive
+      #     exitcode=0
+      #     terraform plan \
+      #       -lock=false \
+      #       -detailed-exitcode \
+      #       -out=.planfile || exitcode=$?
+      #     echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
+      #   env:
+      #     GITHUB_APP_ID: ${{ vars.APP_ID }}
+      #     GITHUB_APP_INSTALLATION_ID: ${{ vars.APP_INSTALLATION_ID }}
+      #     GITHUB_APP_PEM_FILE: |-
+      #       ${{ secrets.TEAM_MGMT_GITHUB_APP_PEM_FILE }}
 
-      - name: Terraform Plan Comment
-        uses: borchero/terraform-plan-comment@v2.4.0
-        continue-on-error: true
-        with:
-          token: ${{ github.token }}
-          planfile: .planfile
-          working-directory: ${{ env.TF_ROOT }}
-          header: "Terraform Plan: GitHub Teams"
+      # - name: Terraform Plan Comment
+      #   uses: borchero/terraform-plan-comment@v2.4.0
+      #   continue-on-error: true
+      #   with:
+      #     token: ${{ github.token }}
+      #     planfile: .planfile
+      #     working-directory: ${{ env.TF_ROOT }}
+      #     header: "Terraform Plan: GitHub Teams"
