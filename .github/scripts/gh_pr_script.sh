@@ -19,11 +19,11 @@ fi
 
 GH_GROUPS_CHANGED=false
 
-YAML_FILES=$(echo "$FILES" | grep '^ansible-aad/.*\.yaml$' || true)
+GH_FILES=$(echo "$FILES" | grep '^ansible-aad/.*\.yaml$' || true)
 
-echo "$YAML_FILES"
+echo "gh_files: $GH_FILES"
 
-for FILE in $YAML_FILES; do
+for FILE in $GH_FILES; do
   echo "Checking gh_groups diff for $FILE"
 
   # Base version

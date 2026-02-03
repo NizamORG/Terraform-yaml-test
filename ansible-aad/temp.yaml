@@ -15,7 +15,7 @@ aad_groups:
       - az-grp-crp-proddev-bytebenders-dev
       - az-grp-crp-proddev-bytebenders-github
       - az-grp-crp-proddev-bytebenders-qa
-      - az-grp-crp-proddev-bytebenders-prod
+      - az-grp-crp-proddev-bytebenders-prod2
 
     users:
       - ashwini.chechare@trubridge.com
