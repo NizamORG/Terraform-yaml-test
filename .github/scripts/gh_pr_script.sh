@@ -3,8 +3,11 @@ set -euo pipefail
 
 git fetch origin main:origin/main
 RELEVANT_PATHS_REGEX='^(deployments/cpsi/global/iam/core_github_team/|\.github/workflows/gh-pr\.yml|modules/terraform-github-team/terraform-github-team|stacks/iam/github_team/|ansible-aad/.*\.yaml$)'
-
-TRIFILES=$(git diff --name-only origin/main..HEAD)
+MODE="${MODE:-}"
+if [[ "$MODE" == "PR" ]]; then
+  TRIFILES=$(git diff --name-only origin/main..HEAD)
+elif [[ "$MODE" == "MAIN" ]]; then
+  TRIFILES=$(git diff --name-only HEAD~1..HEAD)
 
 echo "Changed files:"
 echo "$TRIFILES"

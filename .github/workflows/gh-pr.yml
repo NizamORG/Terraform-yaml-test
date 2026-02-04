@@ -33,6 +33,8 @@ jobs:
         run : chmod +x .github/scripts/gh_pr_script.sh
       - name: Run scipt
         id: vari
+        env:
+         MODE: PR
         run: ./.github/scripts/gh_pr_script.sh
 
   plan:

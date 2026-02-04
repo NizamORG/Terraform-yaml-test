@@ -7,6 +7,8 @@ gh_groups:
     members:
       - username: brent-runkle_CPSI
         role: maintainer
+      - username: Nizam2
+        role: maintainer
 aad_groups:
   az-grp-crp-proddev-bytebenders-all:
     nested_groups:
@@ -24,7 +26,6 @@ aad_groups:
       - evan.mitchell@trubridge.com
       - jacob.olier@trubridge.com
       - marshal.thompson@trubridge.com
-      - shubham.kumar@trubridge.com
   az-grp-crp-proddev-bytebenders-approvers:
     users:
       - brent.runkle@trubridge.com

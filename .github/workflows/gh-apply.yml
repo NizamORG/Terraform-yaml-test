@@ -1,0 +1,55 @@
+name: Deploy - GitHub Teams
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "deployments/cpsi/global/iam/core_github_team/**"
+      - ".github/workflows/gh-team-apply.yml"
+      - "modules/terraform-github-team/terraform-github-team"
+      - "stacks/iam/github_team/**"
+      - "ansible-aad/*.yaml"
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  script:
+    name: Detect change scope
+    runs-on: ubuntu-latest
+    outputs:
+      only_ansible: ${{ steps.vari.outputs.only_ansible }}
+      gh_groups_changed: ${{ steps.vari.outputs.gh_groups_changed }}
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+      - name: Add permissions
+        run : chmod +x .github/scripts/gh_pr_script.sh
+      - name: Run scipt
+        id: vari
+        env:
+         MODE: MAIN
+        run: ./.github/scripts/gh_pr_script.sh
+  apply:
+    name: Terraform Apply (GitHub Teams)
+    needs: script
+    if: needs.script.outputs.only_ansible != 'true' || needs.script.outputs.gh_groups_changed == 'true'
+    runs-on: ubuntu-latest
+    environment: terraform-deployment-1_0-pd
+
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+      - name: Echo
+        run: echo "Terraform Job triggerred"
