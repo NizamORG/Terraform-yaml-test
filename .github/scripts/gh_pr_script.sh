@@ -6,8 +6,10 @@ RELEVANT_PATHS_REGEX='^(deployments/cpsi/global/iam/core_github_team/|\.github/w
 MODE="${MODE:-}"
 if [[ "$MODE" == "PR" ]]; then
   TRIFILES=$(git diff --name-only origin/main..HEAD)
+  echo "Running PR Workflow"
 elif [[ "$MODE" == "MAIN" ]]; then
   TRIFILES=$(git diff --name-only HEAD~1..HEAD)
+  echo "Running Main Workflow"
 
 echo "Changed files:"
 echo "$TRIFILES"
