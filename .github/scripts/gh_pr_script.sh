@@ -2,13 +2,15 @@
 set -euo pipefail
 
 git fetch origin main:origin/main
+RELEVANT_PATHS_REGEX='^(deployments/cpsi/global/iam/core_github_team/|\.github/workflows/gh-team-pr\.yml|modules/terraform-github-team/terraform-github-team|stacks/iam/github_team/|ansible-azure-aad/group/all/.*\.yaml$)'
 
-FILES=$(git diff --name-only origin/main..HEAD)
+TRIFILES=$(git diff --name-only origin/main..HEAD)
 
 echo "Changed files:"
-echo "$FILES"
-
-if echo "$FILES" | grep -qvE '^ansible-aad/.*\.yaml$'; then
+echo "$TRIFILES"
+RELEVANT_FILES=$(echo "$TRIFILES" | grep -E "$RELEVANT_PATHS_REGEX" || true)
+echo "Relevant files: $RELEVANT_FILES"
+if echo "$RELEVANT_FILES" | grep -qvE '^ansible-aad/.*\.yaml$'; then
   echo "only_ansible=false" >> "$GITHUB_OUTPUT"
   echo "Non-ansible files detected. Skipping gh_groups diff"
   echo "gh_groups_changed=false" >> "$GITHUB_OUTPUT"
