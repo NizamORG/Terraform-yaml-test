@@ -15,8 +15,11 @@ fi
 
 echo "Changed files:"
 echo "$TRIFILES"
+
 RELEVANT_FILES=$(echo "$TRIFILES" | grep -E "$RELEVANT_PATHS_REGEX" || true)
-echo "Relevant files: $RELEVANT_FILES"
+echo "Relevant files:"
+echo "$RELEVANT_FILES"
+
 if echo "$RELEVANT_FILES" | grep -qvE '^ansible-aad/.*\.yaml$'; then
   echo "only_ansible=false" >> "$GITHUB_OUTPUT"
   echo "Non-ansible files detected. Skipping gh_groups diff"
@@ -30,7 +33,8 @@ GH_GROUPS_CHANGED=false
 
 GH_FILES=$(echo "$RELEVANT_FILES" | grep '^ansible-aad/.*\.yaml$' || true)
 
-echo "gh_files: $GH_FILES"
+echo "gh_files:"
+echo "$GH_FILES"
 
 for FILE in $GH_FILES; do
   echo "Checking gh_groups diff for $FILE"
