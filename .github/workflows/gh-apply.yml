@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Add permissions
         run : chmod +x .github/scripts/gh_pr_script.sh
       - name: Run scipt

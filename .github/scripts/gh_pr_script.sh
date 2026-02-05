@@ -9,7 +9,7 @@ if [[ "$MODE" == "PR" ]]; then
   TRIFILES=$(git diff --name-only origin/main..HEAD)
   echo "Running PR Workflow"
 elif [[ "$MODE" == "MAIN" ]]; then
-  TRIFILES=$(git diff --name-only HEAD~1..HEAD)
+  TRIFILES=$(git diff --name-only HEAD^1..HEAD)
   echo "Running Main Apply Workflow"
 fi
 
