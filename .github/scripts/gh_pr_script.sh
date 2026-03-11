@@ -3,17 +3,12 @@ set -euo pipefail
 git fetch origin main:origin/main
 triggerred_paths='^(deployments/cpsi/global/iam/core_github_team/|\.github/workflows/gh-team-pr\.yml|\.github/workflows/gh-team-apply\.yml|modules/terraform-github-team/terraform-github-team|stacks/iam/github_team/|ansible-aad/.*\.yaml$)'
 
-MODE="${MODE:-}"
-if [[ "$MODE" == "PR" ]]; then
- diff_Files=$(git diff --name-only origin/main..HEAD)
- var="origin/main"
-elif [[ "$MODE" == "MAIN" ]]; then
- diff_Files=$(git diff --name-only HEAD^1..HEAD)
- var="HEAD~1"
-fi
-echo "var:$var"
-echo "diff:$diff_Files"
-relevant_files=$(echo "$diff_Files" | grep -E "$triggerred_paths" || true)
+MODE="MAIN"
+[[ "$MODE" == "PR" ]] && DIFF_RANGE=$(git diff --name-only origin/main..HEAD) BASE_REF="origin/main"
+[[ "$MODE" == "MAIN" ]] && DIFF_RANGE=$(git diff --name-only HEAD^1..HEAD) BASE_REF="HEAD~1"
+echo "$DIFF_RANGE"
+echo "$BASE_REF"
+relevant_files=$(git diff --name-only "$DIFF_RANGE" | grep -E "$TRIGGERED_PATHS" || true)
 echo "relevant: $relevant
 if echo "$relevant_files" | grep -qvE '^ansible-azure-aad/group_vars/all/.*\.yaml$'; then
   echo "only_ansible=false" >> "$GITHUB_OUTPUT"
