@@ -3,8 +3,7 @@ set -euo pipefail
 
 git fetch origin main:origin/main
 RELEVANT_PATHS_REGEX='^(deployments/cpsi/global/iam/core_github_team/|\.github/workflows/gh-team-pr\.yml|\.github/workflows/gh-team-apply\.yml|modules/terraform-github-team/terraform-github-team|stacks/iam/github_team/|ansible-aad/.*\.yaml$)'
-
-MODE="${MODE:-}"
+echo "$MODE"
 if [[ "$MODE" == "PR" ]]; then
   TRIFILES=$(git diff --name-only origin/main..HEAD)
   echo "Running PR Workflow"
