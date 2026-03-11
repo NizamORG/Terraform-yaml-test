@@ -18,6 +18,7 @@ aad_groups:
       - az-grp-crp-prodmadhusss
       - az-grp-crp-proddev-bravo-pd
       - az-grp-crp-prod2-bravo
+      - az-grp-crp-prod-dev
       - az-grp-crp-prod2-bravo
     users:
       - mahesh.ramasamy@trubridge.com
@@ -53,4 +54,5 @@ aad_groups:
       - sowmiya.arul@trubridge.com
       - subramanian.namasivayam@trubridge.com
       - thirumalaikumar.mahalingam@trubridge.com
+
       - vasu.chinnamani@trubridge.com
